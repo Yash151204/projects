@@ -1,0 +1,26 @@
+{
+  "status": "ok",
+  "totalResults": 70,
+  "articles": [
+    {
+      "source": { "id": null, "name": "European Pharmaceutical Review" },
+      "author": null,
+      "title": "Novel pill could aid postpartum depression symptoms - European Pharmaceutical Review",
+      "description": "If approved, the treatment could provide the first oral, at-home, neuroactive steroid therapy to treat postpartum depression.",
+      "url": "https://www.europeanpharmaceuticalreview.com/news/185230/novel-pill-zuranolone-could-aid-postpartum-depression-symptoms/",
+      "urlToImage": "https://www.europeanpharmaceuticalreview.com/wp-content/uploads/zuranolone.jpg",
+      "publishedAt": "2023-07-28T12:07:24Z",
+      "content": "Posted: 28 July 2023 | Catherine Eckford (European Pharmaceutical Review) | No comments yet\r\nIf approved, the treatment could provide the first oral, at-home, neuroactive steroid therapy to treat pos… [+2069 chars]"
+    },
+    {
+      "source": { "id": null, "name": "Biomedcentral.com" },
+      "author": null,
+      "title": "Gut microbiota analyses of inflammatory bowel diseases from a representative Saudi population - BMC Gastroenterology - BMC Gastroenterology",
+      "description": "Background Crohn’s diseases and ulcerative colitis, both of which are chronic immune-mediated disorders of the gastrointestinal tract are major contributors to the overarching Inflammatory bowel diseases. It has become increasingly evident that the pathologic…",
+      "url": "https://bmcgastroenterol.biomedcentral.com/articles/10.1186/s12876-023-02904-2",
+      "urlToImage": "https://media.springernature.com/w200/springer-static/cover/journal/12876.jpg",
+      "publishedAt": "2023-07-28T12:03:19Z",
+      "content": null
+    }
+  ]
+}
