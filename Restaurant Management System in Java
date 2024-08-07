@@ -1,0 +1,468 @@
+import java.util.*;
+class MenuItems{
+    private String menuName;
+    private String type;
+    private int price;
+    private double tax;
+    private String modifier;
+    
+
+   public MenuItems(String menuName,String type,int price,double tax,String modifier){
+         this.menuName=menuName;
+         this.type=type;
+         this.price=price;
+         this.tax=tax;
+         this.modifier=modifier;
+   }
+   public void displayMenuItems(){
+    System.out.println("Name of Menu Item is : "+menuName );
+    System.out.println("Type of Menu item is : "+type );
+    System.out.println("Price of Menu Item is : "+price );
+    System.out.println("Tax Percentage on Menu Item is : "+tax );
+    System.out.println("Modifier of Menu Item is : "+modifier );
+   }
+   public String getMenuname(){
+    return menuName;
+   }
+   public void setMenuName(String menuName){
+      this.menuName=menuName;
+   }
+   public String getType(){
+        return type;
+   }
+   public void setType(String type){
+    this.type=type;
+   }
+   public int getPrice(){
+      return price;
+   }
+   public void setPrice(int price){
+    this.price=price;
+   }
+   public double getTax(){
+    return tax;
+   }
+   public void setTax(double tax){
+    this.tax=tax;
+   }
+   public String getModifier(){
+     return modifier;
+   }
+   public void setModifier(String modifier){
+      this.modifier=modifier;
+   }
+   
+}
+class StaffMember{
+    private String staffName;
+    private String role;
+    private double salary;
+    private String mobileNo;
+    
+    public StaffMember(String staffName,String mobileNo,String role,double  salary){
+       this.staffName=staffName;
+       this.role=role;
+       this.salary=salary;
+    if (isValidMobileNumber(mobileNo)) {
+        this.mobileNo = mobileNo;
+    } else {
+        System.out.println("Invalid mobile number. Mobile number must be exactly 10 digits.");
+        this.mobileNo = ""; 
+    }
+}
+          private boolean isValidMobileNumber(String mobileNumber) {
+               return mobileNumber.matches("\\d{10}"); 
+      }
+
+
+    public void displayStaffMember(){
+        System.out.println("Name of Staff is : "+staffName);
+        System.out.println("Mobile No of Staff is  : "+mobileNo );
+        System.out.println("Role of Staff  is : "+role);
+        System.out.println("Salary of staff is : "+salary );
+       }
+       public String getStaffName() {
+        return staffName;
+    }
+
+    public void setStaffName(String staffName) {
+        this.staffName = staffName;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    public String getMobileNo() {
+        return mobileNo;
+    }
+
+    public void setMobileNo(String mobileNo) {
+        if (isValidMobileNumber(mobileNo)) {
+            this.mobileNo = mobileNo;
+        } else {
+            System.out.println("Invalid mobile number. Mobile number must be exactly 10 digits.");
+        }
+    }     
+}
+class Main{
+    Scanner  sc = new Scanner(System.in);
+    private  final int  MAX_ITEM = 100;
+    private  final int  MAX_STAFF = 50;
+    private int menuItemCount;
+    private int staffCount;
+    private MenuItems[] items;
+    private StaffMember[] staffs;
+    public Main(){
+        items=new MenuItems[MAX_ITEM];
+        staffs=new StaffMember[MAX_STAFF];
+        
+        menuItemCount=0;
+        staffCount=0;
+    }
+    public void addMenuItem(String menuName,String type,int price,double tax,String modifier){
+        if(menuItemCount<MAX_ITEM){
+            items[menuItemCount++] = new MenuItems(menuName, type, price, tax, modifier);
+            System.out.println();
+            System.out.println("Menu Item Added Succesfully");
+        }
+        else{
+            System.out.println("Can't Add More Menu Items! ");
+            System.out.println();
+        }
+    }
+    public void displayMenuItems(){
+        if(menuItemCount==0){
+            System.out.println();
+            System.out.println("You have No menu Items to display ");
+            System.out.println("");
+        }
+        else{
+            System.out.println();
+            System.out.println("Details of All Menu Items: ");
+         for(int i=0;i<menuItemCount;i++){
+            System.out.println("Menu Item "+(i+1) +" : ");
+            items[i].displayMenuItems();
+            System.out.println();
+         }
+        }
+    }
+    public void addStaffMember(String staffName,String mobileNo,String role,double  salary){
+        if(staffCount<MAX_STAFF){
+            staffs[staffCount++] = new StaffMember(staffName,mobileNo,role,salary);
+            System.out.println();
+            System.out.println("Staff Member Added Succesfully");
+        }
+        else{
+            System.out.println("Can't Add More Staff Members! ");
+            System.out.println();
+        }
+    
+    }
+    public void displayStaffMember(){
+        if(staffCount == 0){
+           System.out.println();
+           System.out.println("There is No Staff Members");
+           System.out.println();
+        }
+        else{
+            System.out.println();
+            System.out.println("Details of All Staff Members !!");
+            System.out.println();
+            for(int i=0;i<staffCount;i++){
+                System.out.println("Details of Staff Member "+(i+1) +" : ");
+                staffs[i].displayStaffMember();
+                System.out.println();
+             }
+        }
+    }
+    public void updateMenuItem(String name){
+        boolean found=false;
+        for(int i=0; i < menuItemCount;i++){
+            if(items[i].getMenuname().equalsIgnoreCase(name)){
+                System.out.print("Enter New Name: ");
+                String newName=sc.next();
+                items[i].setMenuName(newName);
+                System.out.println("Enter New Type: ");
+                String choice1;
+                String newType="";
+                do{
+                System.out.println("Enter B for Breakfast");
+                System.out.println("Enter L for Lunch");
+                System.out.println("Enter D for Dinner");
+             
+             choice1 = sc.next();
+             choice1=choice1.toUpperCase();
+             switch (choice1) {
+               case "B": 
+                     newType="Breakfast";
+                    break;
+               case "L":
+               newType="Lunch";    
+                   break;
+               case "D":
+               newType="Dinner";
+                   break;
+               default:
+                   System.out.println("Please Enter from B, L , D   only ");
+                   break;
+             }
+                   } while (!choice1.equals("B") && !choice1.equals("L") && !choice1.equals("D") );
+                items[i].setType(newType);
+                System.out.print("Enter New Price of Item: ");
+                int newPrice=sc.nextInt();
+                items[i].setPrice(newPrice);
+                System.out.print("Enter New Tax on Item: ");
+                double newTax=sc.nextDouble();
+                items[i].setTax(newTax); 
+                System.out.print("Enter New Modifier of Item: ");   
+                String newModifier = sc.next();
+                items[i].setModifier(newModifier);
+                System.out.println("Details updated successfully for " + name);
+                found = true;
+                break;
+            }
+        }
+        if(!found){
+            System.out.println("Menu Item with name " + name + " not found.");
+        }
+    }
+    public void updateStaffMember(String name) {
+        boolean found = false;
+        for (int i = 0; i < staffCount; i++) {
+            if (staffs[i].getStaffName().equalsIgnoreCase(name)) {
+                System.out.print("Enter New Name: ");
+                String newName=sc.next();
+                staffs[i].setStaffName(newName);
+                System.out.print("Enter new mobile number: ");
+                String newMobileNo = sc.next();
+                staffs[i].setMobileNo(newMobileNo);
+                System.out.print("Enter new role: ");
+                String newRole = sc.next();
+                staffs[i].setRole(newRole);
+                System.out.print("Enter new salary: ");
+                double newSalary = sc.nextDouble();
+                staffs[i].setSalary(newSalary);
+                System.out.println("Details updated successfully for " + name);
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("Staff member with name " + name + " not found.");
+        }
+    }
+    public void deleteMenuItem(String name) {
+        boolean found = false;
+        for (int i = 0; i < menuItemCount; i++) {
+            if (items[i] != null && items[i].getMenuname().equalsIgnoreCase(name)) {
+                items[i] = null;
+                System.out.println("Menu item " + name + " deleted successfully.");
+                found = true;
+                menuItemCount--;
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("Menu item with name " + name + " not found.");
+        }
+    }
+    public void deleteStaffMember(String name) {
+        boolean found = false;
+        for (int i = 0; i < staffCount; i++) {
+            if (staffs[i] != null && staffs[i].getStaffName().equalsIgnoreCase(name)) {
+                staffs[i] = null;
+                System.out.println("Staff  " + name + " deleted successfully.");
+                found = true;
+                staffCount--;
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("Staff  with name " + name + " not found.");
+        }
+    }
+
+    public static void main(String[] args) {
+        Main m = new Main();
+        Scanner sc = new Scanner(System.in);
+        System.out.println();
+        System.out.println();
+        System.out.println("Restaurant Management System");
+        System.out.println();
+        String USERNAME = "admin@gmail.com";
+        String PASSWORD = "Admin@123";
+        String userName,password;
+        do{
+        System.out.println();
+        System.out.print("Enter Email Address: ");
+         userName = sc.nextLine();
+        }while(!(userName.equals(USERNAME)));
+        do{
+            System.out.println();
+            System.out.print("Enter Password: ");
+            password = sc.nextLine();
+            }while(!(password.equals(PASSWORD)));
+        System.out.println();
+        System.out.println("***********Welcome Owner***********");
+        System.out.println();
+        int choiceInput;
+        System.out.println("Please Choose From Below Options  ");
+        System.out.println();
+        do{
+        System.out.println("1 Add Menu Item to Your Restaurant ");
+        System.out.println("2 Add Staff Member to Your Restaurant ");
+        System.out.println("3 Display Menu Items ");
+        System.out.println("4 Display Staff Members ");
+        System.out.println("5 Update Menu Items ");
+        System.out.println("6 Update Any Staff Member Information ");
+        System.out.println("7 Delete Menu Items ");
+        System.out.println("8 Delete Any Staff Member ");
+        System.out.println("9 Exit ");
+        System.out.println();
+        System.out.print("Please Enter Your Choice: ");
+        choiceInput=sc.nextInt();
+        if(choiceInput > 9 || choiceInput < 1   ){
+            System.out.println();
+            System.out.println("Invalid Selction, please try again");
+            System.out.println();
+        } 
+    switch(choiceInput){
+        case 1:
+            System.out.println();
+             System.out.println();
+             System.out.println("Enter Your Menu Item ");
+             System.out.println();
+             System.out.print("Enter Menu  Item  name: ");
+             String menuName = sc.next();
+             System.out.println("Enter Type of Item.: ");
+             String choice1;
+             String type="";
+             do{
+             System.out.println("Enter B for Breakfast");
+             System.out.println("Enter L for Lunch");
+             System.out.println("Enter D for Dinner");
+             
+             choice1 = sc.next();
+             choice1=choice1.toUpperCase();
+             switch (choice1) {
+               case "B": 
+                     type="Breakfast";
+                    break;
+               case "L":
+                   type="Lunch";    
+                   break;
+               case "D":
+                   type="Dinner";
+                   break;
+               default:
+                   System.out.println("Please Enter from B, L , D   only ");
+                   break;
+             }
+                   } while (!choice1.equals("B") && !choice1.equals("L") && !choice1.equals("D") );
+          
+            //  String type=sc.next();
+             System.out.print("Enter Price for Menu Item: ");
+             int price=sc.nextInt();
+             System.out.print("Enter Tax Percentage on Menu Item: ");
+             int tax=sc.nextInt();
+             System.out.print("Enter Modifier on Menu Item: ");
+             String modifier = sc.next();
+             m.addMenuItem(menuName, type, price, tax, modifier);
+             System.out.println();
+             System.out.println();
+           break; 
+        case 2:
+              System.out.println();
+              System.out.print("Enter Name Of Staff Member: ");
+              String name= sc.next();
+              System.out.print("Enter Mobile No: ");
+              String no=sc.next();
+              String role=" ";
+              String choice;
+              
+              do{
+              System.out.println("Enter Role for "+name+" : ");
+              System.out.println("Enter M for Manager");
+              System.out.println("Enter C for Chef");
+              System.out.println("Enter W for Waiter");
+              System.out.println("Enter J for Cleaner");
+              choice = sc.next();
+              choice=choice.toUpperCase();
+              switch (choice) {
+                case "M": 
+                      role="Manager";
+                     break;
+                case "C":
+                    role="Chef";    
+                    break;
+                case "W":
+                    role="Waiter";
+                    break;
+                case "J":
+                    role="Cleaner";
+                    break;
+                default:
+                    System.out.println("Please Enter from M, C , J , W  only ");
+                    break;
+              }
+                    } while (!choice.equals("M") && !choice.equals("C") && !choice.equals("W") && !choice.equals("J"));
+                    System.out.print("Enter salary for "+name+" :");
+                    double salary=sc.nextDouble();  
+                    m.addStaffMember(name, no, role, salary);
+                    System.out.println();
+             break;
+        case 3:
+             m.displayMenuItems();
+        break;
+        case 4:
+             m.displayStaffMember();       
+        break;
+        case 5:
+                System.out.println();
+                System.out.print("Enter the name of Menu Item to update: ");
+                String updateItemName = sc.next();
+                m.updateMenuItem(updateItemName);
+        break;
+        case 6:
+                System.out.println();
+                System.out.print("Enter the name of the staff member to update: ");
+                String updateName = sc.next();
+                m.updateStaffMember(updateName);
+        break;
+        case 7:
+                System.out.println();
+                System.out.print("Enter the name of the Menu Item to delete: ");
+                String deleteMenuItem = sc.next();
+                m.deleteMenuItem(deleteMenuItem);
+                System.out.println();
+        break;
+        case 8:
+                System.out.println();
+                System.out.print("Enter the name of the Staff to delete: ");
+                String deleteStaffName = sc.next();
+                m.deleteStaffMember(deleteStaffName);
+                System.out.println();
+        break;
+        case 9:
+                System.out.println("Exiting ..!!");
+           break;
+        default:
+                System.out.println("Invalid Option");
+  }
+}while(choiceInput != 9); 
+sc.close();
+}
+}
